@@ -1,0 +1,34 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        if (head == null || head.next == null) // If head is null or there is only one node then return null.
+            return null;
+        ListNode slow = head, fast = head;
+        while (fast != null && fast.next != null) { // Loop detection part. Two-pointer concept.
+            slow = slow.next; // Slow is moving with a speed of 1 node.
+            fast = fast.next.next; // Fast is moving with a speed of 2 nodes.
+            if (slow == fast)
+                break;
+        }
+
+        if (slow != fast) // If there is no loop then return null.
+            return null;
+
+        // slow = head; // We have moved the slow pointer to head.
+        while (head != fast) { // Loop removal concept.
+            head = head.next;
+            fast = fast.next;
+        }
+        return head; // Fast and Slow will always meet at the entry of loop which we have to return.
+    }
+}

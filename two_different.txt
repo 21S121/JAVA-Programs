@@ -1,0 +1,32 @@
+public int lengthOfLongestSubstringTwoDistinct(String s) {
+        // Write your code here
+        int si=0;
+        int ei=0;
+        int count=0;
+        int len=0;
+
+        int n=s.size();
+        int[] fre=new int[128];//vector<int> fre(128,0);
+
+        while(ei<n){
+            if(fre[s.charAt(ei)]==0){
+                count++;
+            }
+
+            fre[s.charAt(ei)]++;
+            ei++;
+
+            while(count>2){
+                if(fre[s.charAt(si)]==1){
+                    count--;
+                }
+                fre[s.charAt(si)]--;
+                si++;
+            }
+
+            len=Math.max(len,ei-si);
+        }
+
+        return len;
+    }
+

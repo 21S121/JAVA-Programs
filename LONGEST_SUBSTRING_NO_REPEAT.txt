@@ -1,0 +1,32 @@
+class Solution 
+{
+    public int lengthOfLongestSubstring(String s) 
+    {
+            int si=0;
+            int ei=0;
+            int len=0;
+            int c=0;
+            int freq[]=new int [128];
+            int n=s.length();
+            while(ei<n)
+            {
+                char ch=s.charAt(ei);
+                if(freq[ch]==1)
+                    c++;
+                freq[ch]++;
+                ei++;
+                while(c>0)
+                {
+                    char h=s.charAt(si);
+                    if(freq[h]==2)
+                        c--;
+                    freq[h]--;
+                    si++;
+                }
+                len=Math.max(len, ei-si);
+
+                
+            }
+        return len;
+    }
+}
