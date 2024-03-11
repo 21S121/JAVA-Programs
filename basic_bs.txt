@@ -1,0 +1,23 @@
+class Solution {
+    public int bs(int arr[],int k)
+{
+    int si=0;
+    int ei=arr.length-1;
+    while(si<=ei)
+    {
+        int mid=(si+ei)/2;
+        if(arr[mid]==k)
+            return mid;
+        else if(arr[mid]>k)
+        {
+            ei=mid-1;
+        }
+        else 
+            si=mid+1;
+    }
+    return -1;
+}
+    public int search(int[] arr, int k) {
+        return bs(arr,k);
+    }
+}

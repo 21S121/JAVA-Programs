@@ -1,0 +1,31 @@
+public class painter (int []board,int k,int n)
+{
+    int s=0;
+    int e=0;
+    for(int x:board)
+    {
+        s=Math.max(s,x);
+        e+=x;
+    }    
+    while(s<e)
+    {
+        int mid=(s+e)/2;
+        int painter_req=1;
+        int current_painter_work=0;
+        for(int x:board)
+        {
+            if(current_painter_work+x<=mid)
+                current_painter_work+=x;
+            else
+            {
+                painter_req++;
+                current_painter_work=x;
+            }
+        }
+        if(painter_req>k)
+            s=mid+1;
+        else
+            e=mid;
+        
+    }
+}

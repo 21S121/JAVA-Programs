@@ -1,0 +1,8 @@
+public boolean check(long A,int i)
+    {
+        A=A>>i;
+        if((A&1)!=0)
+            return true;
+        return false;
+
+    }

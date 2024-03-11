@@ -1,0 +1,37 @@
+class Solution {
+   public boolean isPossibleToShip(int[] weight, int capacity, int days) {
+        int d = 1;
+        int totalWeightPerDay = 0;
+        for (int w : weight) {
+            totalWeightPerDay += w;
+            if (totalWeightPerDay > capacity) {
+                d++;
+                totalWeightPerDay = w;
+            }
+
+            if (d > days)
+                return false;
+        }
+
+        return true;
+    }
+
+    public int shipWithinDays(int[] weights, int days) {
+        int maxEle = 0, sum = 0;
+        for (int w : weights) {
+            maxEle = Math.max(maxEle, w);
+            sum += w;
+        }
+
+        int si = maxEle, ei = sum;
+        while (si < ei) {
+            int capacity = (si + ei) / 2;
+            if (!isPossibleToShip(weights, capacity, days))
+                si = capacity + 1;
+            else
+                ei = capacity;
+        }
+
+        return si;
+    }
+}

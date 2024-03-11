@@ -1,0 +1,21 @@
+class Solution 
+    {
+        public int findMin(int[] nums) 
+        {
+            int s=0;
+            int e=nums.length-1;
+            while(s<e)
+            {
+                int mid=(s+e)/2;
+                int startingelement=nums[s];
+                int endingelement=nums[e];
+                int middleelement=nums[mid];
+                if(middleelement<endingelement)
+                    e=mid;
+                else 
+                    s=mid+1;
+
+            }
+            return nums[s];
+        }
+    }
